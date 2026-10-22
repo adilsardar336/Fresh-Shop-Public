@@ -1,0 +1,10 @@
+# Free public hosting for Fresh Vegetable Shop.
+# The customer site is static; order operations go through /api.
+[build]
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
