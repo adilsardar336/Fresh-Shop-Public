@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#24543c"><title>Fresh Vegetable Shop | Saturday Pickup</title>
+<style>
+:root {
+  --green:#24543c;--green2:#2d7855;--bg:#f5f8f3;--line:#e1e9df;
+  --ink:#21382b;--muted:#5d7365;--warn:#fff0d4;--error:#a23024;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth;scroll-padding-top:92px}
+body {margin:0;min-width:0;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif;-webkit-text-size-adjust:100%}
+button,input,textarea {font:inherit}
+button {cursor:pointer;touch-action:manipulation}
+button:disabled {opacity:.48;cursor:not-allowed}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible {outline:3px solid #8cc7a4;outline-offset:2px}
+input,textarea {accent-color:var(--green)}
+header {background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top {max-width:1180px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand {font-weight:850;font-size:20px;display:flex;align-items:center;gap:10px;min-width:0;line-height:1.18}
+.brand span:last-child {min-width:0}
+.brand-icon {width:42px;height:42px;flex:0 0 42px;border-radius:13px;background:var(--green);color:white;display:grid;place-items:center;font-size:23px}
+.tag {font-size:12px;border-radius:30px;padding:7px 10px;font-weight:800;background:#e5f3e9;color:var(--green);white-space:nowrap;text-align:center}
+main {max-width:1180px;margin:auto;padding:18px 20px 60px;min-width:0}
+.hero {border-radius:20px;background:linear-gradient(100deg,#d8ecd9,#f1f7ed);padding:27px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px}
+.eyebrow {font-size:12px;letter-spacing:1.3px;font-weight:800;color:var(--green2);text-transform:uppercase}
+.hero h1 {font-size:clamp(27px,4vw,41px);line-height:1.14;margin:7px 0}
+.hero p {margin:0;max-width:700px;color:#496651}
+.heroEmoji {font-size:84px;white-space:nowrap}
+.layout {display:grid;grid-template-columns:minmax(0,1fr) 345px;gap:22px;align-items:start;min-width:0}
+.layout>section {min-width:0}
+.shopbar {display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:13px}
+.shopbar h2 {font-size:22px;letter-spacing:-.5px;margin:0}
+.shopbar input {width:220px;max-width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:white;min-height:44px}
+.tabs {display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding-bottom:12px;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar {display:none}
+.tab {white-space:nowrap;border:1px solid #cbdcd0;background:white;padding:9px 13px;border-radius:100px;font-weight:750;color:#456853;min-height:42px;flex:0 0 auto}
+.tab.active {color:white;background:var(--green);border-color:var(--green)}
+.products {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-width:0}
+.product {background:white;border:1px solid var(--line);border-radius:16px;padding:13px;display:grid;grid-template-columns:54px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:11px;row-gap:7px;min-width:0;align-items:center;box-shadow:0 1px 1px rgba(20,59,38,.03)}
+.product.has-qty {border-color:#a9cfb5;background:#fcfffc}
+.productHead {grid-column:1/3;grid-row:1/3;display:flex;align-items:center;gap:11px;min-width:0;align-self:center}
+.productIcon {flex:0 0 54px;height:54px;border-radius:13px;background:#edf6ed;display:grid;place-items:center;font-size:31px}
+.productInfo {min-width:0}
+.productTitle {font-weight:800;line-height:1.25;font-size:15px;overflow-wrap:anywhere}
+.unit {font-size:12px;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}
+.price {grid-column:3;grid-row:1;text-align:right;font-size:18px;font-weight:850;color:var(--green);white-space:nowrap;line-height:1.25}
+.qtyrow {grid-column:3;grid-row:2;display:flex;justify-content:flex-end;align-items:center;min-width:0}
+.qtyrow small {display:none}
+.stepper {display:flex;gap:7px;align-items:center;justify-content:flex-end}
+.stepper button {border:1px solid #c5d9c9;background:#f4f9f4;color:#234e37;width:40px;height:40px;flex:0 0 40px;border-radius:11px;font-size:23px;line-height:1;display:grid;place-items:center;padding:0}
+.stepper button:last-child {background:var(--green);border-color:var(--green);color:white}
+.stepper span {font-weight:850;font-size:16px;min-width:18px;text-align:center;font-variant-numeric:tabular-nums}
+.panel {background:white;border:1px solid var(--line);border-radius:17px;padding:20px;position:sticky;top:84px;min-width:0;scroll-margin-top:80px}
+.panel h2 {font-size:22px;margin:0 0 12px}
+.cartrow {display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #edf1eb;padding:9px 0;font-size:13px}
+.cartrow span {min-width:0;overflow-wrap:anywhere}
+.cartrow strong {white-space:nowrap}
+.muted {color:var(--muted);font-size:13px}
+.totalline {display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:18px;padding:14px 0}
+.totalline strong {font-size:24px;color:var(--green);white-space:nowrap}
+label.fieldlabel {display:block;font-weight:750;font-size:13px;margin:13px 0 5px}
+.field {display:block;width:100%;min-width:0;padding:11px 12px;border:1px solid #ccdbcf;border-radius:10px;background:white;outline-color:var(--green);font-size:16px;min-height:45px}
+textarea.field {min-height:70px;resize:vertical}
+.pickup,.bank {background:#f0f5ed;border-radius:12px;padding:13px;margin:14px 0;font-size:13px;overflow-wrap:anywhere}
+.pickup strong {font-size:14px}
+.paymentChoice {display:block;padding:9px 0;font-size:14px}
+.bank {background:#f5f7ed}.bank p {margin:5px 0}
+.bankAccount {font-size:18px;font-weight:900;letter-spacing:.3px;overflow-wrap:anywhere}
+.notice {font-size:12px;color:var(--muted);margin:12px 0;display:flex;align-items:flex-start;gap:7px}
+.notice input {flex:0 0 auto;margin-top:3px}
+.primary,.secondary,.danger {padding:12px 14px;border-radius:11px;min-height:44px;width:100%;font-weight:800;margin-top:7px}
+.primary {background:var(--green);color:white;border:1px solid var(--green)}
+.secondary {background:white;color:var(--green);border:1px solid #b8cebd}
+.danger {border:1px solid #ba3932;background:#b3332e;color:white}
+.danger:hover {background:#8e241f}
+.message {color:var(--error);font-size:13px;margin:10px 0;min-height:12px}
+.info {color:#685624;background:var(--warn);padding:10px;border-radius:8px;font-size:13px;margin-bottom:12px}
+.receiptView {display:none;background:white;border:1px solid #dce6dc;border-radius:18px;padding:25px;max-width:720px;margin:auto;min-width:0;overflow-wrap:anywhere}
+.receiptView h2 {color:var(--green);font-size:28px;margin:0}
+.billRow {display:flex;justify-content:space-between;gap:15px;padding:8px 0;border-bottom:1px solid #edf1eb;font-size:13px}
+.billRow span {min-width:0;overflow-wrap:anywhere}
+.billRow div:last-child {text-align:right;overflow-wrap:anywhere}
+.billBig {font-size:23px;font-weight:900;color:var(--green)}
+.tools {display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
+.tools button {width:auto;min-width:120px;flex:1}
+.editbox {background:white;border:1px solid var(--line);border-radius:14px;margin-bottom:17px;min-width:0;overflow:hidden}
+.editbox summary {font-size:15px;font-weight:800;list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.editbox summary::-webkit-details-marker {display:none}
+.editbox summary::after {content:'+';font-size:24px;color:var(--green);line-height:1}
+.editbox[open] summary::after {content:'−'}
+.editboxBody {padding:0 18px 17px;border-top:1px solid var(--line)}
+.editbox h3 {margin:0 0 8px}
+.codeField {font-weight:850;letter-spacing:2px;font-size:clamp(16px,4.4vw,22px);text-align:center;color:var(--green);background:#eef7f0}
+.hidden {display:none!important}
+footer {max-width:1180px;margin:auto;padding:0 20px 24px;color:var(--muted);font-size:12px}
+.mobileCartBar {display:none}
+  .mobileCartBar.nearCheckout {display:none!important}
+@media (max-width:940px) {
+  .layout {grid-template-columns:minmax(0,1fr) 320px;gap:14px}
+  .products {grid-template-columns:1fr}
+}
+@media (max-width:800px) {
+  .layout {grid-template-columns:minmax(0,1fr)}
+  .panel {position:static;scroll-margin-top:70px}
+  .heroEmoji {font-size:53px}
+  .products {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mobileCartBar {display:flex;position:fixed;z-index:8;left:10px;right:10px;bottom:calc(9px + env(safe-area-inset-bottom, 0px));background:#fff;border:1px solid #cdded1;border-radius:15px;box-shadow:0 5px 28px rgba(11,49,30,.20);padding:9px 11px;align-items:center;justify-content:space-between;gap:8px}
+  .mobileCartBarInfo {display:flex;flex-direction:column;min-width:0;line-height:1.24}
+  .mobileCartBarInfo small {font-size:12px;color:var(--muted)}
+  .mobileCartBarInfo strong {font-size:19px;white-space:nowrap;color:var(--green);font-variant-numeric:tabular-nums}
+  .mobileCartBar button {background:var(--green);color:white;border:0;border-radius:11px;padding:12px 16px;font-weight:800;min-height:44px;white-space:nowrap}
+  main {padding-bottom:calc(105px + env(safe-area-inset-bottom, 0px))}
+}
+@media (max-width:620px) {
+  .top {padding:11px 13px}
+  .brand {font-size:16px;gap:8px}
+  .brand-icon {height:38px;width:38px;flex-basis:38px;font-size:21px;border-radius:11px}
+  .tag {font-size:10px;line-height:1.25;padding:7px 9px}
+  main {padding:11px 12px 115px}
+  .hero {padding:13px 16px;margin-bottom:12px;border-radius:15px}
+  .hero h1 {font-size:21px;line-height:1.24;margin:3px 0 5px}
+  .hero p {font-size:13px;line-height:1.38}
+  .eyebrow {font-size:9px;letter-spacing:.9px}
+  .heroEmoji {display:none}
+  .shopbar h2 {font-size:19px}
+  .shopbar input {width:100%;min-width:0}
+  .tabs {margin-right:-12px;padding-right:12px;padding-bottom:10px}
+  .products {grid-template-columns:1fr;gap:9px}
+  .product {grid-template-columns:48px minmax(0,1fr) auto;padding:11px 11px 10px;column-gap:10px;row-gap:5px;border-radius:14px;min-height:88px}
+  .productHead {gap:10px}
+  .productIcon {flex-basis:48px;height:48px;font-size:28px;border-radius:12px}
+  .productTitle {font-size:15px}
+  .unit {font-size:12px;margin-top:3px}
+  .price {font-size:17px}
+  .stepper {gap:7px}
+  .stepper button {height:39px;width:39px;flex-basis:39px}
+  .panel {padding:16px;border-radius:15px}
+  .panel h2 {font-size:20px}
+  .editbox {margin-bottom:12px}
+  .editbox summary {padding:12px 14px;font-size:14px}
+  .editboxBody {padding:0 14px 13px}
+  .receiptView {padding:17px 14px;border-radius:15px}
+  .receiptView h2 {font-size:24px}
+  .billRow {gap:7px;font-size:12px}
+  .billRow div:last-child {max-width:57%;white-space:normal}
+  .tools {flex-direction:column;gap:5px}
+  .tools button {width:100%}
+  footer {padding:0 12px 20px}
+}
+@media (max-width:350px) {
+  .brand {font-size:14px}
+  .tag {font-size:9px;padding:6px}
+  .product {grid-template-columns:43px minmax(0,1fr) auto;padding:10px 8px;column-gap:7px}
+  .productHead {gap:7px}
+  .productIcon {flex-basis:43px;height:43px;font-size:25px}
+  .productTitle {font-size:14px}
+  .price {font-size:15px}
+  .stepper button {height:37px;width:37px;flex-basis:37px}
+}
+@media print {
+  header,.hero,.layout,.editbox,#loadStatus,.mobileCartBar,.tools,footer {display:none!important}
+  body {background:white}
+  main {padding:0!important;max-width:none}
+  .receiptView {display:block!important;max-width:none;border:0;padding:0}
+  .receiptView .screenOnly {display:none!important}
+}
+</style></head><body>
+<header><div class="top"><div class="brand"><span class="brand-icon">🥬</span><span id="brandName">Fresh Vegetable Shop</span></div><div class="tag">SATURDAY PICKUP · 8 PM</div></div></header>
+<main>
+<section class="hero"><div><span class="eyebrow">Fresh vegetables, fruits & essentials</span><h1>Shop today. Collect Saturday.</h1><p>Order for Saturday collection at 8 PM. Pay at pickup or transfer to NH Bank.</p></div><div class="heroEmoji">🥕🍎</div></section>
+<div id="loadStatus" class="info">Loading the shop...</div>
+<details id="editLookup" class="editbox"><summary>Have an order code? Change or cancel an order</summary><div class="editboxBody"><p class="muted">Enter the private code from your order confirmation. Anyone with this code can edit or cancel the order, so keep it safe.</p><label class="fieldlabel" for="editCodeInput">Private order code</label><input class="field" id="editCodeInput" maxlength="64" autocomplete="off" autocapitalize="characters" placeholder="e.g. K7F2Q9M4XZ"><button class="secondary" id="loadEditBtn" type="button">Find my order</button><div id="editMessage" class="message" role="alert"></div></div></details>
+<div class="layout" id="shopLayout">
+<section><div class="shopbar"><h2 id="catalogHeading">Shop all items</h2><input id="search" type="search" placeholder="Search products..." aria-label="Search products"></div><div class="tabs" id="tabs"></div><div id="products" class="products"><div class="info">Loading products...</div></div></section>
+<aside class="panel" id="orderPanel"><h2 id="orderHeading">Your order</h2><div id="cartItems" class="muted">Your cart is empty.</div><div class="totalline"><span>Total</span><strong id="cartTotal">₩0</strong></div>
+<form id="orderForm">
+<label class="fieldlabel" for="name">Customer name *</label><input class="field" id="name" required minlength="2" maxlength="70" autocomplete="name" placeholder="Full name">
+<div class="pickup"><strong>📅 Saturday pickup · 8:00 PM (KST)</strong><div id="nextPickup"></div><div id="location"></div><div id="pickupInstructions" class="muted"></div><div>No date selection required.</div></div>
+<div id="paymentChoices"><label class="fieldlabel">Payment method</label><label class="paymentChoice"><input type="radio" name="method" value="pickup" checked> Pay when collecting</label><label class="paymentChoice"><input type="radio" name="method" value="bank"> NH Bank transfer (manually confirmed)</label></div>
+<div class="bank"><strong>🏦 NH Bank transfer</strong><p id="bankName">NH Bank</p><div class="bankAccount" id="bankAccount">3026598099541</div><div id="bankHolder">Sardar Syed</div><p class="muted">Your order is marked unpaid until the shop confirms the actual amount received.</p></div>
+<label class="fieldlabel" for="note">Special instructions (optional)</label><textarea class="field" id="note" maxlength="250" placeholder="Any requests?"></textarea>
+<label class="notice" id="privacyNotice"><input id="privacy" type="checkbox"> I agree to share my name and order details with this shop to manage my Saturday pickup.</label>
+<button id="submitBtn" class="primary" type="submit" disabled>Place order · ₩0</button><button type="button" id="cancelOrderBtn" class="danger hidden">Cancel this order</button><button type="button" id="cancelEditBtn" class="secondary hidden">Exit order editing</button><div class="message" id="orderMessage" role="alert"></div>
+</form>
+</aside><div class="mobileCartBar" id="mobileCartBar" role="region" aria-label="Your shopping basket"><div class="mobileCartBarInfo"><small id="mobileCartCount">0 items</small><strong id="mobileCartTotal">₩0</strong></div><button type="button" id="mobileCheckout">View order ↓</button></div></div>
+<section id="receiptView" class="receiptView" aria-live="polite"><h2>Fresh Vegetable Shop</h2><div class="muted">Customer order bill · Saturday collection at 8:00 PM (KST)</div><h3 id="receiptTitle">Order receipt</h3><div id="receiptMeta"></div><h3>Items</h3><div id="receiptLines"></div><div style="margin-top:20px;text-align:right"><div class="billBig" id="receiptTotal"></div><div id="receiptPaid"></div><div id="receiptDue"></div><div id="receiptPayment"></div></div><p class="muted">NH Bank · 3026598099541 · Sardar Syed. Please check your bill when you collect your order.</p>
+<div id="printableCode" class="muted">Your private change/cancel code: <strong id="printableCodeValue"></strong> (keep private)</div><div id="cancelledNotice" class="info hidden" role="status">This order is cancelled. It will not be prepared for pickup. If you already paid, please contact the shop about your refund.</div><div class="screenOnly"><div class="info">Keep your <b>private order code</b> safe. Use it on the main website to change or cancel this order before pickup.</div><label class="fieldlabel" for="receiptCode">Your private change / cancellation code</label><input id="receiptCode" class="field codeField" readonly><div class="tools"><button type="button" class="secondary" id="copyEditCode">Copy code</button><button type="button" class="secondary" id="printBill">Print / Save PDF</button><button type="button" class="secondary" id="editCurrent">Change this order</button><button type="button" class="danger" id="cancelReceiptBtn">Cancel order</button><button type="button" class="primary" id="newOrder">New order</button></div></div></section>
+</main><footer>Fresh Vegetable Shop · Saturday 8:00 PM pickup only · Payment at pickup or NH Bank transfer.</footer>
+<script>
+'use strict';
+const INITIAL_EDIT_CODE = '';
+const $=id=>document.getElementById(id),live=true;
+const formatter=new Intl.NumberFormat('ko-KR',{style:'currency',currency:'KRW',maximumFractionDigits:0});
+const demo={name:'Fresh Vegetable Shop',location:'산천단동3길 16-5',hours:'Saturday at 8:00 PM',nextPickup:'',accepting:false,instructions:'Please check your bill.',bank:{name:'NH Bank',account:'3026598099541',holder:'Sardar Syed'},products:[]};
+let store=demo,cart={},category='All',busy=false,editCode='',latestReceipt=null,requestId=newId();
+function newId(){if(typeof crypto!=='undefined'&&crypto.randomUUID)return crypto.randomUUID();return 'id-'+Date.now()+'-'+Math.random().toString(36).slice(2)+'-'+Math.random().toString(36).slice(2);}
+function elem(tag,cls,content){const x=document.createElement(tag);if(cls)x.className=cls;if(content!==undefined)x.textContent=content;return x;}
+function money(n){return formatter.format(Number(n)||0);}
+function dateText(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return 'Saturday evening, 8:00 PM';return new Intl.DateTimeFormat('en-US',{dateStyle:'full',timeZone:'UTC'}).format(new Date(s+'T12:00:00Z'))+' · 8:00 PM';}
+function chosen(){return store.products.filter(p=>cart[p.id]>0).map(p=>({...p,qty:cart[p.id]}));}
+function total(){return chosen().reduce((sum,p)=>sum+p.qty*p.price,0);}
+function change(id,delta){
+ cart[id]=Math.min(20,Math.max(0,(cart[id]||0)+delta));
+ document.querySelectorAll('.product').forEach(card=>{
+  if(card.dataset.productId!==String(id))return;
+  const n=cart[id]||0;
+  card.classList.toggle('has-qty',n>0);
+  card.querySelector('.stepper span').textContent=String(n);
+  card.querySelector('.stepper button:first-child').disabled=n===0;
+  card.querySelector('.stepper button:last-child').disabled=n>=20;
+ });
+ renderCart();
+}
+function renderTabs(){const t=$('tabs');t.replaceChildren();['All','Vegetables','Fruits','Frozen items','Others'].forEach(c=>{const b=elem('button','tab'+(c===category?' active':''),c);b.type='button';b.onclick=()=>{category=c;renderTabs();renderProducts();};t.append(b);});}
+function renderProducts(){const root=$('products');root.replaceChildren();const search=$('search').value.trim().toLowerCase();const products=store.products.filter(p=>(category==='All'||p.category===category)&&p.name.toLowerCase().includes(search));
+ if(!products.length){root.append(elem('div','info','No matching products.'));return;}
+ products.forEach(p=>{
+ const n=cart[p.id]||0;
+ const card=elem('article','product'+(n?' has-qty':''));card.dataset.productId=String(p.id);
+ const head=elem('div','productHead');
+ head.append(elem('div','productIcon',p.emoji||'🛒'));
+ const detail=elem('div','productInfo');
+ detail.append(elem('div','productTitle',p.name),elem('div','unit',p.unit));
+ head.append(detail);
+ const price=elem('div','price',money(p.price));
+ const qty=elem('div','qtyrow'),steps=elem('div','stepper');
+ const minus=elem('button','','−'),counter=elem('span','',String(n)),plus=elem('button','','+');
+ minus.type=plus.type='button';minus.disabled=n===0;plus.disabled=n>=20;
+ minus.setAttribute('aria-label','Remove one '+p.name);plus.setAttribute('aria-label','Add one '+p.name);
+ counter.setAttribute('aria-live','polite');
+ minus.onclick=()=>change(p.id,-1);plus.onclick=()=>change(p.id,1);
+ steps.append(minus,counter,plus);qty.append(steps);card.append(head,price,qty);root.append(card);
+ });}
+function renderCart(){const root=$('cartItems');root.replaceChildren();const items=chosen();if(!items.length)root.append(elem('div','muted','Your cart is empty.'));
+ else items.forEach(p=>{const line=elem('div','cartrow');line.append(elem('span','',p.name+' · '+p.qty+' × '+p.unit),elem('strong','',money(p.price*p.qty)));root.append(line);});
+ $('cartTotal').textContent=money(total());
+ $('mobileCartCount').textContent=items.reduce((sum,p)=>sum+p.qty,0)+' items';
+ $('mobileCartTotal').textContent=money(total());
+ $('submitBtn').textContent=(editCode?'Save order changes':'Place order')+' · '+money(total());
+ $('submitBtn').disabled=busy||!live||(!editCode&&!store.accepting)||!items.length;
+}
+function applyStore(value){store=value;$('brandName').textContent=value.name||'Fresh Vegetable Shop';$('location').textContent='📍 '+(value.location||'Pickup location not set');$('nextPickup').textContent='Next collection: '+dateText(value.nextPickup);$('pickupInstructions').textContent=value.instructions||'';$('bankName').textContent=value.bank?.name||'NH Bank';$('bankAccount').textContent=value.bank?.account||'3026598099541';$('bankHolder').textContent=value.bank?.holder||'Sardar Syed';
+ $('loadStatus').className='info';$('loadStatus').textContent=!live?'Shop preview only.':!value.accepting?'Orders are currently closed. You can view products but cannot submit new orders.':'Available for Saturday pickup · 8:00 PM';
+ renderTabs();renderProducts();renderCart();}
+function showErr(id,msg){$(id).textContent=msg||'';}
+async function server(name,payload,success,failure){
+ try {
+  const response=await fetch('/api',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    credentials:'same-origin',body:JSON.stringify({action:name,payload:payload})
+  });
+  const data=await response.json();
+  if(!response.ok||!data.ok)throw new Error(data.error||'Could not connect to the shop. Try again.');
+  success(data.result);
+ } catch(error){failure({message:error.message||'Connection error. Try again.'});}
+}
+function validate(){if(!chosen().length)return 'Choose at least one item.';if($('name').value.trim().length<2)return 'Enter customer name.';if(!editCode&&!$('privacy').checked)return 'Please accept the privacy notice.';return '';}
+function submit(e){e.preventDefault();if(busy)return;showErr('orderMessage','');const err=validate();if(err){showErr('orderMessage',err);return;}
+ const data={name:$('name').value.trim(),note:$('note').value.trim(),items:chosen().map(p=>({id:p.id,qty:p.qty})),paymentMethod:document.querySelector('input[name="method"]:checked').value,privacyAccepted:$('privacy').checked,requestId,editCode};
+ busy=true;renderCart();$('submitBtn').textContent='Saving your order...';
+ server(editCode?'changeOrder':'placeOrder',data,res=>{busy=false;renderCart();if(!res||!res.success){showErr('orderMessage','Could not save the order.');return;}editCode=res.editCode;showReceipt(res.receipt);},ex=>{busy=false;renderCart();showErr('orderMessage',ex&&ex.message||'Could not save the order.');});}
+function textRow(parent,a,b){const x=elem('div','billRow');x.append(elem('span','',a),elem('div','',b));parent.append(x);}
+function showReceipt(r){
+ latestReceipt=r;
+ if(r.shortCode)editCode=r.shortCode;
+ $('shopLayout').classList.add('hidden');$('editLookup').classList.add('hidden');
+ $('receiptView').style.display='block';$('receiptTitle').textContent='Order #'+r.orderId;
+ const meta=$('receiptMeta');meta.replaceChildren();
+ textRow(meta,'Customer',r.name);textRow(meta,'Pickup',dateText(r.pickup));textRow(meta,'Collect at',store.location);
+ const lines=$('receiptLines');lines.replaceChildren();
+ r.items.forEach(p=>textRow(lines,p.name,p.qty+' × '+p.unit+' · '+(p.price===null?'Price not recorded':money(p.price*p.qty))));
+ const cancelled=r.status==='Cancelled';
+ $('receiptTotal').textContent=cancelled?'Original bill: '+money(r.originalTotal):'Total: '+money(r.total);
+ $('receiptPaid').textContent='Amount received: '+money(r.paid);
+ $('receiptDue').textContent=cancelled?(r.refund>0?'Refund to arrange: '+money(r.refund):'Nothing to pay — order cancelled'):(r.refund>0?'Refund due: '+money(r.refund):'Balance due: '+money(r.balance));
+ $('receiptPayment').textContent='Status: '+(cancelled?'Cancelled':r.paymentStatus);
+ $('cancelledNotice').classList.toggle('hidden',!cancelled);
+ $('receiptCode').value=r.shortCode||editCode;$('printableCodeValue').textContent=r.shortCode||editCode;$('printableCode').classList.toggle('hidden',cancelled);
+ const canEdit=r.editable!==false&&!cancelled&&r.status!=='Collected'&&r.pickup>=store.nextPickup;
+ $('editCurrent').disabled=!canEdit;$('cancelReceiptBtn').disabled=!canEdit;
+ window.scrollTo(0,0);
+}
+function loadEdit(token){if(busy)return;showErr('editMessage','');const t=String(token||'').trim().toUpperCase().replace(/[\s-]/g,'');if(!/^(?:[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{10}|[0-9A-F]{64})$/.test(t)){showErr('editMessage','Enter your 10-character private order code.');return;}
+ busy=true;server('orderForEdit',t,r=>{busy=false;if(!r.editable){editCode=t;showReceipt(r);return;}
+ editCode=r.shortCode||t;cart={};r.items.forEach(p=>{if(p.id&&store.products.some(x=>x.id===p.id))cart[p.id]=p.qty;});
+ $('name').value=r.name;$('note').value=r.note||'';$('privacy').checked=true;
+ $('orderHeading').textContent='Change your order';$('submitBtn').textContent='Save order changes';$('cancelEditBtn').classList.remove('hidden');$('cancelOrderBtn').classList.remove('hidden');$('privacyNotice').classList.add('hidden');$('paymentChoices').classList.add('hidden');
+ $('receiptView').style.display='none';$('shopLayout').classList.remove('hidden');$('editLookup').classList.add('hidden');category='All';renderTabs();renderProducts();renderCart();window.scrollTo(0,0);
+ if(r.items.some(p=>!p.id||!store.products.some(x=>x.id===p.id)))showErr('orderMessage','Some older products are no longer available. Please review all quantities before saving.');
+ },err=>{busy=false;showErr('editMessage',err&&err.message||'Unable to load the order.');});}
+function newOrder(){editCode='';requestId=newId();cart={};$('orderForm').reset();$('orderHeading').textContent='Your order';$('cancelEditBtn').classList.add('hidden');$('cancelOrderBtn').classList.add('hidden');$('privacyNotice').classList.remove('hidden');$('paymentChoices').classList.remove('hidden');showErr('orderMessage','');$('receiptView').style.display='none';$('shopLayout').classList.remove('hidden');$('editLookup').classList.remove('hidden');category='All';renderTabs();renderProducts();renderCart();window.scrollTo(0,0);}
+function cancelCurrentOrder(){
+ if(busy||!editCode||!latestReceipt&&$('cancelOrderBtn').classList.contains('hidden'))return;
+ const confirmed=window.confirm('Cancel this entire order?\n\nAll ordered quantities will be removed from the shop purchasing list. This action cannot be undone online.');
+ if(!confirmed)return;
+ busy=true;showErr('orderMessage','');showErr('editMessage','');
+ $('cancelReceiptBtn').disabled=true;$('cancelOrderBtn').disabled=true;
+ server('cancelOrder',{editCode},res=>{
+  busy=false;
+  if(!res||!res.success){showErr('orderMessage','Could not cancel the order.');return;}
+  editCode=res.editCode;showReceipt(res.receipt);
+ },err=>{busy=false;const message=err&&err.message||'Could not cancel the order.';showErr('orderMessage',message);showErr('editMessage',message);$('cancelReceiptBtn').disabled=false;$('cancelOrderBtn').disabled=false;});
+}
+function copyOrderCode(){
+ const input=$('receiptCode');const value=input.value;
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(value).catch(()=>{input.select();document.execCommand('copy');});
+ else {input.select();document.execCommand('copy');}
+}
+$('search').addEventListener('input',renderProducts);$('orderForm').addEventListener('submit',submit);
+$('mobileCheckout').addEventListener('click',()=>{$('orderPanel').scrollIntoView({behavior:'smooth',block:'start'});});
+if('IntersectionObserver' in window){
+ const barObserver=new IntersectionObserver(entries=>{
+  $('mobileCartBar').classList.toggle('nearCheckout',entries.some(e=>e.isIntersecting));
+ },{rootMargin:'0px 0px -80px 0px'});
+ barObserver.observe($('orderPanel'));
+}
+$('loadEditBtn').addEventListener('click',()=>loadEdit($('editCodeInput').value));
+$('editCodeInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();loadEdit($('editCodeInput').value);}});
+$('copyEditCode').addEventListener('click',copyOrderCode);
+$('cancelReceiptBtn').addEventListener('click',cancelCurrentOrder);
+$('cancelOrderBtn').addEventListener('click',cancelCurrentOrder);
+$('printBill').addEventListener('click',()=>window.print());$('editCurrent').addEventListener('click',()=>loadEdit(editCode));$('newOrder').addEventListener('click',newOrder);$('cancelEditBtn').addEventListener('click',newOrder);
+if(live){server('publicStore',null,info=>{applyStore(info);if(INITIAL_EDIT_CODE)loadEdit(INITIAL_EDIT_CODE);},e=>{applyStore(demo);showErr('orderMessage',e&&e.message||'Shop could not be loaded.');});}else{applyStore(demo);}
+</script></body></html>
